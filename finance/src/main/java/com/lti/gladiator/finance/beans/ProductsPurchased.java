@@ -13,8 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PRODUCTS_PURCHASED")
 public class ProductsPurchased {
-	
-	
+		
 	@Id
 	@Column(name="PRODUCT_PURCHASED_ID")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_PP_SEQ")
@@ -26,10 +25,7 @@ public class ProductsPurchased {
 	
 	@OneToOne()
 	@JoinColumn(name="PRODUCT_ID")
-	private Products product;
-	
-	@Column(name="EMI_DURATION")
-	private String emiDuration;
+	private Products productId;
 	
 	@Column(name="AMOUNT_BILLABLE")
 	private int amountBillable;
@@ -39,19 +35,20 @@ public class ProductsPurchased {
 	
 	@Column(name="TRANSACTION_ID")
 	private int transactionId;
+	
+	@Column(name="EMI_PERIOD")
+	private int emiPeriod;
 
-	public ProductsPurchased(int productPurchasedId, int userId, Products product, String emiDuration, int amountBillable,
-			int amountPayed, int transactionId) {
+	public ProductsPurchased(int productPurchasedId, int userId, Products productId, int amountBillable,
+			int amountPayed, int transactionId, int emiPeriod) {
 		super();
 		this.productPurchasedId = productPurchasedId;
 		this.userId = userId;
-		this.product = product;
-		this.emiDuration = emiDuration;
+		this.productId = productId;
 		this.amountBillable = amountBillable;
 		this.amountPayed = amountPayed;
 		this.transactionId = transactionId;
-		
-		
+		this.emiPeriod = emiPeriod;
 	}
 
 	public ProductsPurchased() {
@@ -74,20 +71,12 @@ public class ProductsPurchased {
 		this.userId = userId;
 	}
 
-	public Products getProduct() {
-		return product;
+	public Products getProductId() {
+		return productId;
 	}
 
-	public void setProduct(Products product) {
-		this.product = product;
-	}
-
-	public String getEmiDuration() {
-		return emiDuration;
-	}
-
-	public void setEmiDuration(String emiDuration) {
-		this.emiDuration = emiDuration;
+	public void setProductId(Products productId) {
+		this.productId = productId;
 	}
 
 	public int getAmountBillable() {
@@ -114,11 +103,23 @@ public class ProductsPurchased {
 		this.transactionId = transactionId;
 	}
 
+	public int getEmiPeriod() {
+		return emiPeriod;
+	}
+
+	public void setEmiPeriod(int emiPeriod) {
+		this.emiPeriod = emiPeriod;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", product="
-				+ product + ", emiDuration=" + emiDuration + ", amountBillable=" + amountBillable + ", amountPayed="
-				+ amountPayed + ", transactionId=" + transactionId + "]";
+		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", productId="
+				+ productId + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transactionId="
+				+ transactionId + ", emiPeriod=" + emiPeriod + "]";
 	}
+
+
+	
+	
 	
 }

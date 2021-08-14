@@ -52,6 +52,14 @@ public class ProductsPurchasedController {
 		return productsPurchasedService.getUserProductsPurchased(userId);
 	}
 	
+    //http://localhost:8090/api/v1/buyproduct
+    @PostMapping(path="/buyproduct")
+    public String buyProduct(@RequestBody ProductsPurchased pp) {
+         productsPurchasedService.buyProduct(pp);
+         return "***";
+
+   }
+	
 	 //http://localhost:8090/api/v1/productsPurchased/100001
 
 	    /*@GetMapping(path="/productsPurchased/{id}", produces="application/json")
