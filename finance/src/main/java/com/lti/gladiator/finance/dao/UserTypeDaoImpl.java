@@ -17,7 +17,7 @@ public class UserTypeDaoImpl implements UserTypeDao{
 	
 	@Override
 	public UserTypes getUserTypeConsumer() {
-		UserTypes userType = em.find(UserTypes.class,1);
+		UserTypes userType = em.find(UserTypes.class,2);
 		return userType;
 	}
 }

@@ -29,7 +29,7 @@ public class ConsumerDaoImpl implements ConsumerDao{
 
 	@Override
 	public List<Consumer> getAllConsumers() {
-		String sql = "Select c from Consumer c";
+		String sql = "Select c from Consumer c WHERE c.user.userType=2";
 		TypedQuery<Consumer> tq = em.createQuery(sql,Consumer.class);
 		List<Consumer> myConsumers = tq.getResultList();
 		System.out.println(myConsumers);
@@ -40,5 +40,14 @@ public class ConsumerDaoImpl implements ConsumerDao{
 	public Consumer getConsumerById(int userId) {
 		
 		return null;
+	}
+
+	@Override
+	public List<Consumer> getAllNonValidConsumers() {
+		String sql = "Select c from Consumer c WHERE c.isValidated = 'N' AND c.user.userType=2";
+		TypedQuery<Consumer> tq = em.createQuery(sql,Consumer.class);
+		List<Consumer> myConsumers = tq.getResultList();
+		System.out.println(myConsumers);
+		return myConsumers;
 	}
 }
