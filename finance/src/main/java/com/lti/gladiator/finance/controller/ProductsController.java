@@ -35,6 +35,7 @@ public class ProductsController {
 		return productService.getProductById(productId);
 	
 	}
+	//http://localhost:8090/api/v1/addnewproduct
 	@PostMapping("/addnewproduct")
 	public String addProduct(@RequestBody Products product) {
 	 return productService.addProduct(product);
