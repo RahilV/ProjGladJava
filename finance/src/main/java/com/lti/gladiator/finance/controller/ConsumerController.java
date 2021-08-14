@@ -39,7 +39,7 @@ public class ConsumerController {
 	@Autowired
 	private UserTypeController userTypeControl;
 	
-	
+	//test
 	
 	@PostMapping("/consumers")
 	public Consumer saveConsumer(@RequestBody Consumer consumer) {
