@@ -96,6 +96,12 @@ public class ConsumerController {
 		return consumerService.getAllNonValidConsumers();
 	}
 	
+	@PostMapping("/validateConsumers")
+	public Consumer validateConsumer(@RequestBody Users user)
+	{
+		
+		return consumerService.validateConsumer(user.getUserId());
+	}
 	/*@GetMapping(path="/consumer/{id}",produces="application/json")
 	public Consumer getUserById(@PathVariable(value="id") int consumerId)
 	{

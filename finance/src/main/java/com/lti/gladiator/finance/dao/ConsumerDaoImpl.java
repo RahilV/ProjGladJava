@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -49,5 +50,19 @@ public class ConsumerDaoImpl implements ConsumerDao{
 		List<Consumer> myConsumers = tq.getResultList();
 		System.out.println(myConsumers);
 		return myConsumers;
+	}
+
+	@Override
+	@Transactional
+	public Consumer validateConsumer(int userId) {
+		String sql = "Select c FROM Consumer c WHERE c.user.userId=:userId";
+		Query tq = em.createQuery(sql);
+		tq.setParameter("userId", userId);
+		Consumer myConsumer = (Consumer) tq.getSingleResult();
+		System.out.println(myConsumer);
+		myConsumer.setIsValidated('Y');
+		em.merge(myConsumer);
+		System.out.println(myConsumer);
+		return myConsumer;
 	}
 }

@@ -10,4 +10,5 @@ public interface ConsumerService {
 	public abstract List<Consumer> getAllNonValidConsumers();
 	public abstract Consumer createConsumer(Consumer consumer);
 	public abstract Consumer getConsumerById(int userId);
+	public abstract Consumer validateConsumer(int userId);
 }
