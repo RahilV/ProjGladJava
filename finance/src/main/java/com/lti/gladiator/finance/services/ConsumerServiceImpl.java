@@ -37,4 +37,15 @@ public class ConsumerServiceImpl implements ConsumerService{
 		return consumerDao.getConsumerById(userId);
 	}
 
+	@Override
+	public List<Consumer> getAllNonValidConsumers() {
+		return consumerDao.getAllNonValidConsumers();
+	}
+
+	@Override
+	public Consumer validateConsumer(int userId) {
+		return consumerDao.validateConsumer(userId);
+	}
+
+	
 }
