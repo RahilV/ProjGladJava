@@ -65,4 +65,13 @@ public class ConsumerDaoImpl implements ConsumerDao{
 		System.out.println(myConsumer);
 		return myConsumer;
 	}
+
+	@Override
+	@Transactional
+	public String deleteConsumer(int userId) {
+		/*Consumer c = em.find(Consumer.class, userId);
+		System.out.println(c);*/
+		em.remove(em.find(Consumer.class, userId));
+		return null;
+	}
 }
