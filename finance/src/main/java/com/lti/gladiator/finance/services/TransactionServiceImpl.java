@@ -45,5 +45,11 @@ public class TransactionServiceImpl implements TransactionService{
 		System.out.println("\n Get latest Transaction");
 		return transactionDao.latestTransactions(productsPurchasedId);
 	}
+	
+	@Override
+	public List<Transactions> getTransactionsById(int productsPurchasedId) {
+		System.out.println("\n Get Transaction by Id");
+		return transactionDao.getTransactionsById(productsPurchasedId);
+	}
 
 }
