@@ -117,9 +117,4 @@ public class ProductsPurchased {
                 + productId + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transactionId="
                 + transactionId + ", emiPeriod=" + emiPeriod + "]";
     }
-
-
-    
-    
-    
 }
