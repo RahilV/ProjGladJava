@@ -102,12 +102,18 @@ public class ConsumerController {
 		
 		return consumerService.validateConsumer(user.getUserId());
 	}
-	/*@GetMapping(path="/consumer/{id}",produces="application/json")
-	public Consumer getUserById(@PathVariable(value="id") int consumerId)
-	{
-		Consumer user = consumerService.get(consumerId);
-		return user;
-	}*/
 	
+	@PostMapping(path="/deleteConsumer",produces="application/json")
+	public String deleteConsumer(@RequestBody Users user)
+	{
+		String msg = consumerService.deleteConsumer(user.getUserId());
+		return msg;
+	}
+	
+	@GetMapping(path="/consumers/{userId}")
+	public Consumer getConsumerById(@PathVariable int userId)
+	{
+		return consumerService.getConsumerById(userId);
+	}
 		
 }
