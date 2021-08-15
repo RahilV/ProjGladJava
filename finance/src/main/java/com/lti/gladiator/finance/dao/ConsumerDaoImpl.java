@@ -39,8 +39,8 @@ public class ConsumerDaoImpl implements ConsumerDao{
 
 	@Override
 	public Consumer getConsumerById(int userId) {
-		
-		return null;
+		Consumer consumer = em.find(Consumer.class, userId);
+		return consumer;
 	}
 
 	@Override
@@ -74,4 +74,11 @@ public class ConsumerDaoImpl implements ConsumerDao{
 		em.remove(em.find(Consumer.class, userId));
 		return null;
 	}
+
+	@Override
+	public Consumer editConsumer(Consumer consumer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

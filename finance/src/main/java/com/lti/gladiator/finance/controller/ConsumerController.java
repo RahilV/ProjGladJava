@@ -110,5 +110,10 @@ public class ConsumerController {
 		return msg;
 	}
 	
+	@GetMapping(path="/consumers/{userId}")
+	public Consumer getConsumerById(@PathVariable int userId)
+	{
+		return consumerService.getConsumerById(userId);
+	}
 		
 }

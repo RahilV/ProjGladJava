@@ -12,4 +12,5 @@ public interface ConsumerDao {
 	public abstract String deleteConsumer(int userId);
 	public abstract Consumer getConsumerById(int userId);
 	public abstract Consumer validateConsumer(int userId);
+	public abstract Consumer editConsumer(Consumer consumer);
 }

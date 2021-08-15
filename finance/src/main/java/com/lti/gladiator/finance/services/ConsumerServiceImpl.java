@@ -52,5 +52,10 @@ public class ConsumerServiceImpl implements ConsumerService{
 		return consumerDao.deleteConsumer(userId);
 	}
 
+	@Override
+	public Consumer editConsumer(Consumer consumer) {
+		return consumerDao.editConsumer(consumer);
+	}
+
 	
 }
