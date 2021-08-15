@@ -40,5 +40,13 @@ public class TransactionController {
     public int latestTransaction(@PathVariable(value="id") int productsPurchasedId) {
         return transactionService.latestTransactions(productsPurchasedId);
     }
+    
+//http://localhost:8090/api/v1/transactionsById/1000001
+    
+    @GetMapping(path="/transactionsById/{id}",produces="application/json")
+    public List<Transactions> getTransactionsById(@PathVariable(value="id") int productsPurchasedId) {
+    	List<Transactions> transactionList = transactionService.getTransactionsById(productsPurchasedId);
+		return transactionList;
+    }
 	
 }

@@ -49,4 +49,13 @@ public class TransactionDaoImpl implements TransactionDao {
 		Transactions t = tq.getSingleResult();
 		return t.getTransactionId();
 	}
+	@Override
+	public List<Transactions> getTransactionsById(int productsPurchasedId) {
+		
+		String sql = "SELECT t FROM Transactions t where t.productPurchased.productPurchasedId = :t_productPurchasedId";
+		TypedQuery<Transactions> tq = em.createQuery(sql, Transactions.class);
+		tq.setParameter("t_productPurchasedId", productsPurchasedId);
+		List<Transactions> TransactionList = tq.getResultList();
+		return TransactionList;
+	}
 }

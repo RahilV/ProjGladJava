@@ -13,5 +13,7 @@ public interface TransactionDao {
 	public List<Transactions> getTransaction();
 	
 	public int latestTransactions(int productsPurchasedId);
+	
+	public List<Transactions> getTransactionsById(int productsPurchasedId);
 
 }
