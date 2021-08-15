@@ -13,10 +13,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PRODUCTS_PURCHASED")
 public class ProductsPurchased {
-		
-	@Id
-	@Column(name="PRODUCT_PURCHASED_ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_PP_SEQ")
+        
+    @Id
+    @Column(name="PRODUCT_PURCHASED_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_PP_SEQ")
     @SequenceGenerator(name="HB_PP_SEQ", sequenceName="PP_Seq" ,allocationSize=1)
 	private int productPurchasedId;
 	
@@ -38,6 +38,7 @@ public class ProductsPurchased {
 	
 	@Column(name="EMI_PERIOD")
 	private int emiPeriod;
+   
 
 	public ProductsPurchased(int productPurchasedId, int userId, Products productId, int amountBillable,
 			int amountPayed, int transactionId, int emiPeriod) {
@@ -51,65 +52,67 @@ public class ProductsPurchased {
 		this.emiPeriod = emiPeriod;
 	}
 
-	public ProductsPurchased() {
-		super();
-	}
 
-	public int getProductPurchasedId() {
-		return productPurchasedId;
-	}
+    public ProductsPurchased() {
+        super();
+    }
 
-	public void setProductPurchasedId(int productPurchasedId) {
-		this.productPurchasedId = productPurchasedId;
-	}
+    public int getProductPurchasedId() {
+        return productPurchasedId;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public void setProductPurchasedId(int productPurchasedId) {
+        this.productPurchasedId = productPurchasedId;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
 	public Products getProductId() {
 		return productId;
 	}
 
+
 	public void setProductId(Products productId) {
 		this.productId = productId;
 	}
 
-	public int getAmountBillable() {
-		return amountBillable;
-	}
+    public int getAmountBillable() {
+        return amountBillable;
+    }
 
-	public void setAmountBillable(int amountBillable) {
-		this.amountBillable = amountBillable;
-	}
+    public void setAmountBillable(int amountBillable) {
+        this.amountBillable = amountBillable;
+    }
 
-	public int getAmountPayed() {
-		return amountPayed;
-	}
+    public int getAmountPayed() {
+        return amountPayed;
+    }
 
-	public void setAmountPayed(int amountPayed) {
-		this.amountPayed = amountPayed;
-	}
+    public void setAmountPayed(int amountPayed) {
+        this.amountPayed = amountPayed;
+    }
 
-	public int getTransactionId() {
-		return transactionId;
-	}
+    public int getTransactionId() {
+        return transactionId;
+    }
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
+    }
 
-	public int getEmiPeriod() {
-		return emiPeriod;
-	}
+    public int getEmiPeriod() {
+        return emiPeriod;
+    }
 
-	public void setEmiPeriod(int emiPeriod) {
-		this.emiPeriod = emiPeriod;
-	}
+    public void setEmiPeriod(int emiPeriod) {
+        this.emiPeriod = emiPeriod;
+    }
 
 	@Override
 	public String toString() {
@@ -122,4 +125,6 @@ public class ProductsPurchased {
 	
 	
 	
+
+
 }

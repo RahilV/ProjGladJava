@@ -52,38 +52,17 @@ public class ProductsPurchasedController {
 		return productsPurchasedService.getUserProductsPurchased(userId);
 	}
 	
-    //http://localhost:8090/api/v1/buyproduct
-    @PostMapping(path="/buyproduct")
-    public String buyProduct(@RequestBody ProductsPurchased pp) {
-         productsPurchasedService.buyProduct(pp);
-         return "***";
 
-   }
 	
-	 //http://localhost:8090/api/v1/productsPurchased/100001
+	 //http://localhost:8090/api/v1/buyproduct
 
-	    /*@GetMapping(path="/productsPurchased/{id}", produces="application/json")
-	    public ProductsPurchased getPrdById(@PathVariable(value="id") int productsPurchasedId) {
-	        return productsPurchasedService.getPrdById(productsPurchasedId);
-	    }*/
+	@PostMapping(path = "/buyproduct")
+	public String buyProduct(@RequestBody ProductsPurchased pp) {
+		productsPurchasedService.buyProduct(pp);
+		return "Product Purchased Successfully";
 
-	    
-	    /*@PostMapping(path="/buyproduct",produces="application/json")
-	    public String buyProduct(@RequestBody ProductsPurchased pp) {
-	    	
-	    	/*String prdName=pp.getProduct().getProductName();
-	    	String prdDetails=pp.getProduct().getProductDetails();
-	    	int prdPrice=pp.getProduct().getPrice();
-	    	String prdImage=pp.getProduct().getImage();
-	    	String prdECriteria=pp.getProduct().getEligibilityCriteria()
-	    	
-	    	Products viewProduct=prdController.getProductById(100003);
-	    	System.out.println(viewProduct);
-	    	//return null;
-	    	
-	    	ProductsPurchased pc = new ProductsPurchased(1000004,100001,viewProduct,"3 months",20000,5000,10000010);
-	    	return productsPurchasedService.buyProduct(pc);	
-	    }*/
+
+	}
 	    
 }
 
