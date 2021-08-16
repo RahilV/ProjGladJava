@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lti.gladiator.finance.beans.ProductsPurchased;
+import com.lti.gladiator.finance.beans.Transactions;
 import com.lti.gladiator.finance.dao.ProductsPurchasedDao;
 
 @Service("ProductsPurchasedService")
@@ -49,5 +50,14 @@ public class ProductsPurchasedServiceImpl implements ProductsPurchasedService {
 	@Override
 	public List<ProductsPurchased> getUserProductsPurchased(int userId) {
 		return productsPurchasedDao.getUserProductsPurchased(userId);
+	}
+
+	public int getInstallmentsLeft(int productsPurchasedId) {
+		return productsPurchasedDao.getInstallmentsLeft(productsPurchasedId);
+	}
+
+	@Override
+	public int payInstallment(Transactions transaction) {
+		return productsPurchasedDao.payInstallment(transaction);
 	}
 }

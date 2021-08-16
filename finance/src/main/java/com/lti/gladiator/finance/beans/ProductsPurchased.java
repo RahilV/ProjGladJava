@@ -32,7 +32,7 @@ public class ProductsPurchased implements Serializable{
 	
 	@OneToOne(cascade=CascadeType.MERGE,targetEntity=Products.class)
 	@JoinColumn(name="PRODUCT_ID")
-	private Products productId;
+	private Products product;
 	
 	@Column(name="AMOUNT_BILLABLE")
 	private int amountBillable;
@@ -48,12 +48,12 @@ public class ProductsPurchased implements Serializable{
 	private int emiPeriod;
    
 
-	public ProductsPurchased(int productPurchasedId, int userId, Products productId, int amountBillable,
+	public ProductsPurchased(int productPurchasedId, int userId, Products product, int amountBillable,
 			int amountPayed, Transactions transaction, int emiPeriod) {
 		super();
 		this.productPurchasedId = productPurchasedId;
 		this.userId = userId;
-		this.productId = productId;
+		this.product = product;
 		this.amountBillable = amountBillable;
 		this.amountPayed = amountPayed;
 		this.transaction = transaction;
@@ -81,13 +81,13 @@ public class ProductsPurchased implements Serializable{
         this.userId = userId;
     }
 
-	public Products getProductId() {
-		return productId;
+	public Products getproduct() {
+		return product;
 	}
 
 
-	public void setProductId(Products productId) {
-		this.productId = productId;
+	public void setproduct(Products product) {
+		this.product = product;
 	}
 
     public int getAmountBillable() {
@@ -124,8 +124,8 @@ public class ProductsPurchased implements Serializable{
 
 	@Override
 	public String toString() {
-		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", productId="
-				+ productId + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transaction="
+		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", product="
+				+ product + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transaction="
 				+ transaction + ", emiPeriod=" + emiPeriod + "]";
 	}
 

@@ -2,6 +2,7 @@ package com.lti.gladiator.finance.dao;
 
 import java.util.List;
 import com.lti.gladiator.finance.beans.ProductsPurchased;
+import com.lti.gladiator.finance.beans.Transactions;
 
 public interface ProductsPurchasedDao {
 	
@@ -15,5 +16,7 @@ public interface ProductsPurchasedDao {
 	
 	public ProductsPurchased buyProduct(ProductsPurchased pp);
 	
+	public int getInstallmentsLeft(int productsPurchasedId);
 	
+	public int payInstallment(Transactions transaction);
 }

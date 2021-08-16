@@ -53,7 +53,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	@Override
 	public List<Transactions> getTransactionsById(int productsPurchasedId) {
 		
-		String sql = "SELECT t FROM Transactions t where t.productPurchased.productPurchasedId = :t_productPurchasedId";
+		String sql = "SELECT t FROM Transactions t where t.productPurchasedId.productPurchasedId = :t_productPurchasedId";
 		TypedQuery<Transactions> tq = em.createQuery(sql, Transactions.class);
 		tq.setParameter("t_productPurchasedId", productsPurchasedId);
 		List<Transactions> TransactionList = tq.getResultList();
@@ -71,4 +71,6 @@ public class TransactionDaoImpl implements TransactionDao {
 		em.merge(t);
 		return t;
 	}
+	
+	
 }

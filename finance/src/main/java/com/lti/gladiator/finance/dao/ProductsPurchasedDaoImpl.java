@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.lti.gladiator.finance.beans.ProductsPurchased;
+import com.lti.gladiator.finance.beans.Transactions;
 
 @Repository("ProductsPurchased")
 @EnableTransactionManagement
@@ -58,6 +60,25 @@ public class ProductsPurchasedDaoImpl implements ProductsPurchasedDao {
 	public ProductsPurchased getPrdById(int productsPurchasedId) {
 		System.out.println(em.find(ProductsPurchased.class, productsPurchasedId));
 		return em.find(ProductsPurchased.class,productsPurchasedId);
+	}
+
+	@Override
+	public int getInstallmentsLeft(int productsPurchasedId) {
+		long emi = 0;
+		//ProductsPurchased pp = em.find(ProductsPurchased.class,productsPurchasedId);
+		String sql = "SELECT count(t) FROM Transactions t WHERE t.productPurchasedId=:t_productsPurchasedId";
+		Query tq = em.createQuery(sql);
+		tq.setParameter("t_productsPurchasedId", productsPurchasedId);
+		emi = (long) tq.getSingleResult();
+		System.out.println(emi);
+		return (int) emi;
+	}
+
+	@Override
+	@Transactional
+	public int payInstallment(Transactions transaction) {
+		em.persist(transaction);
+		return transaction.getTransactionId();
 	}
 	
 	

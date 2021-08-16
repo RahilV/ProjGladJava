@@ -17,5 +17,5 @@ public interface TransactionDao {
 	public List<Transactions> getTransactionsById(int productsPurchasedId);
 	
 	public Transactions setTransactions(Transactions transaction);
-
+	
 }
