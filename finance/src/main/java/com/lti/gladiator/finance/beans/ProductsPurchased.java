@@ -1,5 +1,8 @@
 package com.lti.gladiator.finance.beans;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,26 +13,26 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+//Hibernate: alter table PRODUCTS_PURCHASED add constraint FKsd9qb1m5lai04l9ui2qtfbaiu foreign key (USER_ID) references CONSUMER
+
 @Entity
 @Table(name="PRODUCTS_PURCHASED")
-public class ProductsPurchased {
-	
-	
-	@Id
-	@Column(name="PRODUCT_PURCHASED_ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_PP_SEQ")
+public class ProductsPurchased implements Serializable{
+        
+    @Id
+    @Column(name="PRODUCT_PURCHASED_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_PP_SEQ")
     @SequenceGenerator(name="HB_PP_SEQ", sequenceName="PP_Seq" ,allocationSize=1)
 	private int productPurchasedId;
 	
-	@Column(name="USER_ID")
+    /*@OneToOne(cascade=CascadeType.ALL,targetEntity=Consumer.class)
+	@JoinColumn(name="USER_ID")*/
+    @Column(name="USER_ID")
 	private int userId;
 	
-	@OneToOne()
+	@OneToOne(cascade=CascadeType.MERGE,targetEntity=Products.class)
 	@JoinColumn(name="PRODUCT_ID")
 	private Products product;
-	
-	@Column(name="EMI_DURATION")
-	private String emiDuration;
 	
 	@Column(name="AMOUNT_BILLABLE")
 	private int amountBillable;
@@ -37,88 +40,99 @@ public class ProductsPurchased {
 	@Column(name="AMOUNT_PAYED")
 	private int amountPayed;
 	
-	@Column(name="TRANSACTION_ID")
-	private int transactionId;
+	@OneToOne(cascade=CascadeType.ALL,targetEntity=Transactions.class)
+	@JoinColumn(name="TRANSACTION_ID")
+	private Transactions transaction;
+	
+	@Column(name="EMI_PERIOD")
+	private int emiPeriod;
+   
 
-	public ProductsPurchased(int productPurchasedId, int userId, Products product, String emiDuration, int amountBillable,
-			int amountPayed, int transactionId) {
+	public ProductsPurchased(int productPurchasedId, int userId, Products product, int amountBillable,
+			int amountPayed, Transactions transaction, int emiPeriod) {
 		super();
 		this.productPurchasedId = productPurchasedId;
 		this.userId = userId;
 		this.product = product;
-		this.emiDuration = emiDuration;
 		this.amountBillable = amountBillable;
 		this.amountPayed = amountPayed;
-		this.transactionId = transactionId;
-		
-		
+		this.transaction = transaction;
+		this.emiPeriod = emiPeriod;
 	}
 
-	public ProductsPurchased() {
-		super();
-	}
 
-	public int getProductPurchasedId() {
-		return productPurchasedId;
-	}
+    public ProductsPurchased() {
+        super();
+    }
 
-	public void setProductPurchasedId(int productPurchasedId) {
-		this.productPurchasedId = productPurchasedId;
-	}
+    public int getProductPurchasedId() {
+        return productPurchasedId;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public void setProductPurchasedId(int productPurchasedId) {
+        this.productPurchasedId = productPurchasedId;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public int getUserId() {
+        return userId;
+    }
 
-	public Products getProduct() {
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+	public Products getproduct() {
 		return product;
 	}
 
-	public void setProduct(Products product) {
+
+	public void setproduct(Products product) {
 		this.product = product;
 	}
 
-	public String getEmiDuration() {
-		return emiDuration;
-	}
+    public int getAmountBillable() {
+        return amountBillable;
+    }
 
-	public void setEmiDuration(String emiDuration) {
-		this.emiDuration = emiDuration;
-	}
+    public void setAmountBillable(int amountBillable) {
+        this.amountBillable = amountBillable;
+    }
 
-	public int getAmountBillable() {
-		return amountBillable;
-	}
+    public int getAmountPayed() {
+        return amountPayed;
+    }
 
-	public void setAmountBillable(int amountBillable) {
-		this.amountBillable = amountBillable;
-	}
+    public void setAmountPayed(int amountPayed) {
+        this.amountPayed = amountPayed;
+    }
 
-	public int getAmountPayed() {
-		return amountPayed;
-	}
+    public Transactions getTransaction() {
+        return transaction;
+    }
 
-	public void setAmountPayed(int amountPayed) {
-		this.amountPayed = amountPayed;
-	}
+    public void setTransactionId(Transactions transaction) {
+        this.transaction = transaction;
+    }
 
-	public int getTransactionId() {
-		return transactionId;
-	}
+    public int getEmiPeriod() {
+        return emiPeriod;
+    }
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
+    public void setEmiPeriod(int emiPeriod) {
+        this.emiPeriod = emiPeriod;
+    }
 
 	@Override
 	public String toString() {
 		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", product="
-				+ product + ", emiDuration=" + emiDuration + ", amountBillable=" + amountBillable + ", amountPayed="
-				+ amountPayed + ", transactionId=" + transactionId + "]";
+				+ product + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transaction="
+				+ transaction + ", emiPeriod=" + emiPeriod + "]";
 	}
+
+
 	
+	
+	
+
+
 }
