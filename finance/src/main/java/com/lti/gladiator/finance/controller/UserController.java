@@ -28,6 +28,7 @@ public class UserController {
 	{
 		return userService.getAllUsers();
 	}
+	
 	@GetMapping(path="/user/{id}",produces="application/json")
 	public Users getUserById(@PathVariable(value="id") int userId)
 	{
