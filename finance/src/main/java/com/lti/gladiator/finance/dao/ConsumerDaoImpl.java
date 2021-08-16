@@ -96,10 +96,10 @@ public class ConsumerDaoImpl implements ConsumerDao{
 		em.merge(user);
 		System.out.println("USER "+user);
 		c.setUser(user);
-		EmiCard emiCard = em.find(EmiCard.class, c.getCardNo().getCardNo());
-		emiCard.setCardTypeName(consumer.getCardNo().getCardTypeName());
+		EmiCard emiCard = em.find(EmiCard.class, c.getCard().getCardNo());
+		emiCard.setCardTypeName(consumer.getCard().getCardTypeName());
 		em.merge(emiCard);
-		c.setCardNo(emiCard);
+		c.setCard(emiCard);
 		
 		
 		

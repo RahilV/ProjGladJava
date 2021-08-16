@@ -36,7 +36,7 @@ public class Consumer implements Serializable{
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=EmiCard.class)
 	@JoinColumn(name="CARD_NO")
-	private EmiCard cardNo;
+	private EmiCard card;
 	
 	@Column(name="SAVING_ACCOUNT_NO")
 	private long savingAccNo;
@@ -54,7 +54,7 @@ public class Consumer implements Serializable{
 		super();
 	}
 
-	public Consumer(Users user, String fName, String lName, long phoneNo, String address, EmiCard cardNo,
+	public Consumer(Users user, String fName, String lName, long phoneNo, String address, EmiCard card,
 			long savingAccNo, String ifscCode, char isValidated, int balance) {
 		super();
 		this.user = user;
@@ -62,7 +62,7 @@ public class Consumer implements Serializable{
 		this.lName = lName;
 		this.phoneNo = phoneNo;
 		this.address = address;
-		this.cardNo = cardNo;
+		this.card = card;
 		this.savingAccNo = savingAccNo;
 		this.ifscCode = ifscCode;
 		this.isValidated = isValidated;
@@ -109,12 +109,12 @@ public class Consumer implements Serializable{
 		this.address = address;
 	}
 
-	public EmiCard getCardNo() {
-		return cardNo;
+	public EmiCard getCard() {
+		return card;
 	}
 
-	public void setCardNo(EmiCard cardNo) {
-		this.cardNo = cardNo;
+	public void setCard(EmiCard cardNo) {
+		this.card = cardNo;
 	}
 
 	public long getSavingAccNo() {
@@ -152,7 +152,7 @@ public class Consumer implements Serializable{
 	@Override
 	public String toString() {
 		return "Consumer [user=" + user + ", fName=" + fName + ", lName=" + lName + ", phoneNo=" + phoneNo
-				+ ", address=" + address + ", cardNo=" + cardNo + ", savingAccNo=" + savingAccNo + ", ifscCode="
+				+ ", address=" + address + ", cardNo=" + card + ", savingAccNo=" + savingAccNo + ", ifscCode="
 				+ ifscCode + ", isValidated=" + isValidated + ", balance=" + balance + "]";
 	}
 	

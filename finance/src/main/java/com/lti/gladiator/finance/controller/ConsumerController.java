@@ -55,9 +55,9 @@ public class ConsumerController {
 			userControl.saveUser(newUser);
 			System.out.println("USER :"+newUser);
 			
-			String cardTypeName = consumer.getCardNo().getCardTypeName();
-			int cardsLimit = consumer.getCardNo().getCardLimit();
-			Date cardValidity = consumer.getCardNo().getValidity();
+			String cardTypeName = consumer.getCard().getCardTypeName();
+			int cardsLimit = consumer.getCard().getCardLimit();
+			Date cardValidity = consumer.getCard().getValidity();
 			
 			//CALL EMI CARD CONTROLLER TO ADD CARD
 			EmiCard newCard = new EmiCard(cardTypeName,cardsLimit,cardValidity);
@@ -66,7 +66,7 @@ public class ConsumerController {
 			c.setUser(newUser);
 			c.setAddress(consumer.getAddress());
 			c.setBalance(consumer.getBalance());
-			c.setCardNo(newCard);
+			c.setCard(newCard);
 			c.setfName(consumer.getfName());
 			c.setlName(consumer.getlName());
 			c.setIfscCode(consumer.getIfscCode());
