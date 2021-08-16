@@ -1,5 +1,8 @@
 package com.lti.gladiator.finance.beans;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+//Hibernate: alter table PRODUCTS_PURCHASED add constraint FKsd9qb1m5lai04l9ui2qtfbaiu foreign key (USER_ID) references CONSUMER
+
 @Entity
 @Table(name="PRODUCTS_PURCHASED")
-public class ProductsPurchased {
+public class ProductsPurchased implements Serializable{
         
     @Id
     @Column(name="PRODUCT_PURCHASED_ID")
@@ -20,10 +25,11 @@ public class ProductsPurchased {
     @SequenceGenerator(name="HB_PP_SEQ", sequenceName="PP_Seq" ,allocationSize=1)
 	private int productPurchasedId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+    @OneToOne(cascade=CascadeType.ALL,targetEntity=Consumer.class)
+	@JoinColumn(name="USER_ID")
+	private Consumer userId;
 	
-	@OneToOne()
+	@OneToOne(cascade=CascadeType.ALL,targetEntity=Products.class)
 	@JoinColumn(name="PRODUCT_ID")
 	private Products productId;
 	
@@ -33,22 +39,23 @@ public class ProductsPurchased {
 	@Column(name="AMOUNT_PAYED")
 	private int amountPayed;
 	
-	@Column(name="TRANSACTION_ID")
-	private int transactionId;
+	@OneToOne(cascade=CascadeType.MERGE,targetEntity=Transactions.class)
+	@JoinColumn(name="TRANSACTION_ID")
+	private Transactions transaction;
 	
 	@Column(name="EMI_PERIOD")
 	private int emiPeriod;
    
 
-	public ProductsPurchased(int productPurchasedId, int userId, Products productId, int amountBillable,
-			int amountPayed, int transactionId, int emiPeriod) {
+	public ProductsPurchased(int productPurchasedId, Consumer userId, Products productId, int amountBillable,
+			int amountPayed, Transactions transaction, int emiPeriod) {
 		super();
 		this.productPurchasedId = productPurchasedId;
 		this.userId = userId;
 		this.productId = productId;
 		this.amountBillable = amountBillable;
 		this.amountPayed = amountPayed;
-		this.transactionId = transactionId;
+		this.transaction = transaction;
 		this.emiPeriod = emiPeriod;
 	}
 
@@ -65,11 +72,11 @@ public class ProductsPurchased {
         this.productPurchasedId = productPurchasedId;
     }
 
-    public int getUserId() {
+    public Consumer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Consumer userId) {
         this.userId = userId;
     }
 
@@ -98,12 +105,12 @@ public class ProductsPurchased {
         this.amountPayed = amountPayed;
     }
 
-    public int getTransactionId() {
-        return transactionId;
+    public Transactions getTransaction() {
+        return transaction;
     }
 
-    public void setTransactionId(int transactionId) {
-        this.transactionId = transactionId;
+    public void setTransactionId(Transactions transaction) {
+        this.transaction = transaction;
     }
 
     public int getEmiPeriod() {
@@ -117,8 +124,8 @@ public class ProductsPurchased {
 	@Override
 	public String toString() {
 		return "ProductsPurchased [productPurchasedId=" + productPurchasedId + ", userId=" + userId + ", productId="
-				+ productId + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transactionId="
-				+ transactionId + ", emiPeriod=" + emiPeriod + "]";
+				+ productId + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transaction="
+				+ transaction + ", emiPeriod=" + emiPeriod + "]";
 	}
 
 

@@ -1,5 +1,6 @@
 package com.lti.gladiator.finance.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.gladiator.finance.beans.Products;
 import com.lti.gladiator.finance.beans.ProductsPurchased;
+import com.lti.gladiator.finance.beans.Transactions;
 import com.lti.gladiator.finance.services.ProductsPurchasedServiceImpl;
 
 @CrossOrigin(origins="*")
@@ -28,6 +30,11 @@ public class ProductsPurchasedController {
 	@Autowired
 	private ProductsController prdController;
 	
+	@Autowired
+	private TransactionController transactioncontrol;
+	
+	@Autowired
+	private ConsumerController consumerControl;
 	
 	//http://localhost:8090/api/v1/productsPurchased
 	
@@ -57,7 +64,15 @@ public class ProductsPurchasedController {
 	 //http://localhost:8090/api/v1/buyproduct
 
 	@PostMapping(path = "/buyproduct")
-	public String buyProduct(@RequestBody ProductsPurchased pp) {
+	public String buyProduct(@RequestBody ProductsPurchased productsPurchased) {
+		
+		ProductsPurchased pp = new ProductsPurchased();
+		
+ 
+		Date transactionDate = productsPurchased.getTransaction().getTransactionDate();
+		int amount = productsPurchased.getTransaction().getAmount(); 
+		
+		
 		productsPurchasedService.buyProduct(pp);
 		return "Product Purchased Successfully";
 

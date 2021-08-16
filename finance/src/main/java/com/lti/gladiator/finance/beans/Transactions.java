@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TRANSACTIONS")
-public class Transactions implements Serializable {
+public class Transactions{
 	
 	@Id
 	@Column(name="TRANSACTION_ID")
@@ -24,9 +24,8 @@ public class Transactions implements Serializable {
     @SequenceGenerator(name="HB_TRA_SEQ", sequenceName="Transaction_Seq" ,allocationSize=1)
 	private int transactionId;
 	
-	@OneToOne(cascade=CascadeType.ALL,targetEntity=ProductsPurchased.class)
-	@JoinColumn(name="PRODUCT_PURCHASED_ID")
-	private ProductsPurchased productPurchased;
+	@Column(name="PRODUCT_PURCHASED_ID")
+	private int productPurchasedId;
 	
 	@Column(name="TRANSACTION_DATE")
 	private Date transactionDate;
@@ -37,7 +36,7 @@ public class Transactions implements Serializable {
 	public Transactions(int transactionId, ProductsPurchased productPurchased, Date transactionDate, int amount) {
 		super();
 		this.transactionId = transactionId;
-		this.productPurchased = productPurchased;
+		this.productPurchasedId = productPurchasedId;
 		this.transactionDate = transactionDate;
 		this.amount = amount;
 	}
@@ -54,12 +53,12 @@ public class Transactions implements Serializable {
 		this.transactionId = transactionId;
 	}
 
-	public ProductsPurchased getProductPurchasedId() {
-		return productPurchased;
+	public int getProductPurchasedId() {
+		return productPurchasedId;
 	}
 
-	public void setProductPurchasedId(ProductsPurchased productPurchased) {
-		this.productPurchased = productPurchased;
+	public void setProductPurchasedId(int productPurchasedId) {
+		this.productPurchasedId = productPurchasedId;
 	}
 
 	public Date getTransactionDate() {
@@ -80,7 +79,7 @@ public class Transactions implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Transactions [transactionId=" + transactionId + ", productPurchasedId=" + productPurchased
+		return "Transactions [transactionId=" + transactionId + ", productPurchasedId=" + productPurchasedId
 				+ ", transactionDate=" + transactionDate + ", amount=" + amount + "]";
 	}
 
