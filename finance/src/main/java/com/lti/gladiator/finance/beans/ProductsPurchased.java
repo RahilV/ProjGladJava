@@ -25,8 +25,6 @@ public class ProductsPurchased implements Serializable{
     @SequenceGenerator(name="HB_PP_SEQ", sequenceName="PP_Seq" ,allocationSize=1)
 	private int productPurchasedId;
 	
-    /*@OneToOne(cascade=CascadeType.ALL,targetEntity=Consumer.class)
-	@JoinColumn(name="USER_ID")*/
     @Column(name="USER_ID")
 	private int userId;
 	
@@ -46,81 +44,62 @@ public class ProductsPurchased implements Serializable{
 	
 	@Column(name="EMI_PERIOD")
 	private int emiPeriod;
-   
 
-	public ProductsPurchased(int productPurchasedId, int userId, Products product, int amountBillable,
-			int amountPayed, Transactions transaction, int emiPeriod) {
-		super();
-		this.productPurchasedId = productPurchasedId;
-		this.userId = userId;
-		this.product = product;
-		this.amountBillable = amountBillable;
-		this.amountPayed = amountPayed;
-		this.transaction = transaction;
-		this.emiPeriod = emiPeriod;
+	public int getProductPurchasedId() {
+		return productPurchasedId;
 	}
 
+	public void setProductPurchasedId(int productPurchasedId) {
+		this.productPurchasedId = productPurchasedId;
+	}
 
-    public ProductsPurchased() {
-        super();
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public int getProductPurchasedId() {
-        return productPurchasedId;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public void setProductPurchasedId(int productPurchasedId) {
-        this.productPurchasedId = productPurchasedId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-	public Products getproduct() {
+	public Products getProduct() {
 		return product;
 	}
 
-
-	public void setproduct(Products product) {
+	public void setProduct(Products product) {
 		this.product = product;
 	}
 
-    public int getAmountBillable() {
-        return amountBillable;
-    }
+	public int getAmountBillable() {
+		return amountBillable;
+	}
 
-    public void setAmountBillable(int amountBillable) {
-        this.amountBillable = amountBillable;
-    }
+	public void setAmountBillable(int amountBillable) {
+		this.amountBillable = amountBillable;
+	}
 
-    public int getAmountPayed() {
-        return amountPayed;
-    }
+	public int getAmountPayed() {
+		return amountPayed;
+	}
 
-    public void setAmountPayed(int amountPayed) {
-        this.amountPayed = amountPayed;
-    }
+	public void setAmountPayed(int amountPayed) {
+		this.amountPayed = amountPayed;
+	}
 
-    public Transactions getTransaction() {
-        return transaction;
-    }
+	public Transactions getTransaction() {
+		return transaction;
+	}
 
-    public void setTransactionId(Transactions transaction) {
-        this.transaction = transaction;
-    }
+	public void setTransaction(Transactions transaction) {
+		this.transaction = transaction;
+	}
 
-    public int getEmiPeriod() {
-        return emiPeriod;
-    }
+	public int getEmiPeriod() {
+		return emiPeriod;
+	}
 
-    public void setEmiPeriod(int emiPeriod) {
-        this.emiPeriod = emiPeriod;
-    }
+	public void setEmiPeriod(int emiPeriod) {
+		this.emiPeriod = emiPeriod;
+	}
 
 	@Override
 	public String toString() {
@@ -128,11 +107,4 @@ public class ProductsPurchased implements Serializable{
 				+ product + ", amountBillable=" + amountBillable + ", amountPayed=" + amountPayed + ", transaction="
 				+ transaction + ", emiPeriod=" + emiPeriod + "]";
 	}
-
-
-	
-	
-	
-
-
 }

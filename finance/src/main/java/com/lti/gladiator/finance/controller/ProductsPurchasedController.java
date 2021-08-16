@@ -77,7 +77,7 @@ public class ProductsPurchasedController {
 		t.setProductPurchasedId(pp.getProductPurchasedId());
 		transactioncontrol.setTransactions(t);
 		
-		
+		System.out.println(pp.getProduct());
 		Consumer c = consumerControl.getConsumerById(pp.getUserId());
 		System.out.println(c);
 		c.setBalance(c.getBalance()-pp.getAmountBillable()/pp.getEmiPeriod());
@@ -101,7 +101,7 @@ public class ProductsPurchasedController {
 		productsPurchasedService.payInstallment(transaction);
 		
 		ProductsPurchased pp = em.find(ProductsPurchased.class, transaction.getProductPurchasedId());
-		pp.setTransactionId(transaction);
+		pp.setTransaction(transaction);
 		pp.setAmountPayed(pp.getAmountPayed()+transaction.getAmount());
 		Consumer c = consumerControl.getConsumerById(pp.getUserId());
 		System.out.println(c);
