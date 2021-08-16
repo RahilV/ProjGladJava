@@ -110,10 +110,15 @@ public class ConsumerController {
 		return msg;
 	}
 	
-	@GetMapping(path="/consumers/{userId}")
-	public Consumer getConsumerById(@PathVariable int userId)
+	@GetMapping(path="/consumers/{id}",produces="application/json")
+	public Consumer getConsumerById(@PathVariable(value="id") int userId)
 	{
 		return consumerService.getConsumerById(userId);
 	}
 		
+	@PostMapping(path="consumers/edit")
+	public Consumer editConsumer(@RequestBody Consumer consumer)
+	{
+		return consumerService.editConsumer(consumer);
+	}
 }

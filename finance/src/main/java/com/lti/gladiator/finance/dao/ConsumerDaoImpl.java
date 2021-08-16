@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.lti.gladiator.finance.beans.Consumer;
+import com.lti.gladiator.finance.beans.EmiCard;
+import com.lti.gladiator.finance.beans.Users;
 
 @Repository("consumerDao")
 @EnableTransactionManagement
@@ -76,9 +78,35 @@ public class ConsumerDaoImpl implements ConsumerDao{
 	}
 
 	@Override
+	@Transactional
 	public Consumer editConsumer(Consumer consumer) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Consumer c = em.find(Consumer.class, consumer.getUser().getUserId());
+		System.out.println("\n\n DATA AAYA"+c);
+		c.setfName(consumer.getfName());
+		c.setlName(consumer.getlName());
+		c.setIfscCode(consumer.getIfscCode());
+		c.setSavingAccNo(consumer.getSavingAccNo());
+		c.setPhoneNo(consumer.getPhoneNo());
+		c.setAddress(consumer.getAddress());
+		
+		Users user = em.find(Users.class, c.getUser().getUserId());
+		user.setUserName(consumer.getUser().getUserName());
+		user.setEmail(consumer.getUser().getEmail());
+		em.merge(user);
+		System.out.println("USER "+user);
+		c.setUser(user);
+		EmiCard emiCard = em.find(EmiCard.class, c.getCardNo().getCardNo());
+		emiCard.setCardTypeName(consumer.getCardNo().getCardTypeName());
+		em.merge(emiCard);
+		c.setCardNo(emiCard);
+		
+		
+		
+		em.merge(c);
+		
+		System.out.println("\n\n"+c);
+		return c;
 	}
 
 }
