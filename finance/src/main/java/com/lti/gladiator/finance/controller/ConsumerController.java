@@ -110,7 +110,7 @@ public class ConsumerController {
 		return msg;
 	}
 	
-	@GetMapping(path="/consumers/{id}",produces="application/json")
+	@GetMapping(path="/consumer/{id}",produces="application/json")
 	public Consumer getConsumerById(@PathVariable(value="id") int userId)
 	{
 		return consumerService.getConsumerById(userId);

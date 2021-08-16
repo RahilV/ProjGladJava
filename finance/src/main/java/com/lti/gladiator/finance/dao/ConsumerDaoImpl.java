@@ -41,7 +41,11 @@ public class ConsumerDaoImpl implements ConsumerDao{
 
 	@Override
 	public Consumer getConsumerById(int userId) {
-		Consumer consumer = em.find(Consumer.class, userId);
+		String sql = "Select c from Consumer c where c.user.userId=:c_userId";
+		TypedQuery<Consumer> tq = em.createQuery(sql,Consumer.class);
+		tq.setParameter("c_userId", userId);
+		Consumer consumer = tq.getSingleResult();
+		System.out.println("EK");
 		return consumer;
 	}
 
