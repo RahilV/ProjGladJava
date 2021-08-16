@@ -68,14 +68,13 @@ public class ProductsPurchasedController {
 		
 		ProductsPurchased pp = new ProductsPurchased();
 		
+		System.out.println(productsPurchased);
  
-		Date transactionDate = productsPurchased.getTransaction().getTransactionDate();
+		int transactionDate = productsPurchased.getTransaction().getTransactionId();
 		int amount = productsPurchased.getTransaction().getAmount(); 
 		
-		
-		productsPurchasedService.buyProduct(pp);
+		productsPurchasedService.buyProduct(productsPurchased);
 		return "Product Purchased Successfully";
-
 
 	}
 	    

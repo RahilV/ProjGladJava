@@ -38,10 +38,12 @@ public class ProductsPurchasedDaoImpl implements ProductsPurchasedDao {
 
 	@Override
 	public List<ProductsPurchased> getUserProductsPurchased(int userId) {
-		String sql="SELECT p FROM ProductsPurchased p where p.userId = :p_userId";
+		System.out.println("USER ID:"+userId);
+		String sql="SELECT p FROM ProductsPurchased p where p.userId = ?1";
 		TypedQuery<ProductsPurchased> tq = em.createQuery(sql,ProductsPurchased.class);
-		tq.setParameter("p_userId", (int)userId);
+		tq.setParameter(1, userId);
 		List<ProductsPurchased> userProducts = tq.getResultList();
+		System.out.println(userProducts);
 		return userProducts;
 	}
 	

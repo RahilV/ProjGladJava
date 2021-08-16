@@ -25,9 +25,10 @@ public class ProductsPurchased implements Serializable{
     @SequenceGenerator(name="HB_PP_SEQ", sequenceName="PP_Seq" ,allocationSize=1)
 	private int productPurchasedId;
 	
-    @OneToOne(cascade=CascadeType.ALL,targetEntity=Consumer.class)
-	@JoinColumn(name="USER_ID")
-	private Consumer userId;
+    /*@OneToOne(cascade=CascadeType.ALL,targetEntity=Consumer.class)
+	@JoinColumn(name="USER_ID")*/
+    @Column(name="USER_ID")
+	private int userId;
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=Products.class)
 	@JoinColumn(name="PRODUCT_ID")
@@ -39,7 +40,7 @@ public class ProductsPurchased implements Serializable{
 	@Column(name="AMOUNT_PAYED")
 	private int amountPayed;
 	
-	@OneToOne(cascade=CascadeType.MERGE,targetEntity=Transactions.class)
+	@OneToOne(cascade=CascadeType.ALL,targetEntity=Transactions.class)
 	@JoinColumn(name="TRANSACTION_ID")
 	private Transactions transaction;
 	
@@ -47,7 +48,7 @@ public class ProductsPurchased implements Serializable{
 	private int emiPeriod;
    
 
-	public ProductsPurchased(int productPurchasedId, Consumer userId, Products productId, int amountBillable,
+	public ProductsPurchased(int productPurchasedId, int userId, Products productId, int amountBillable,
 			int amountPayed, Transactions transaction, int emiPeriod) {
 		super();
 		this.productPurchasedId = productPurchasedId;
@@ -72,11 +73,11 @@ public class ProductsPurchased implements Serializable{
         this.productPurchasedId = productPurchasedId;
     }
 
-    public Consumer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Consumer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Transactions{
 	
 	@Id
-	@Column(name="TRANSACTION_ID")
+	@Column(name="TRANSACTION_ID",nullable = false)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "HB_TRA_SEQ")
     @SequenceGenerator(name="HB_TRA_SEQ", sequenceName="Transaction_Seq" ,allocationSize=1)
 	private int transactionId;
@@ -33,7 +33,7 @@ public class Transactions{
 	@Column(name="AMOUNT")
 	private int amount;
 
-	public Transactions(int transactionId, ProductsPurchased productPurchased, Date transactionDate, int amount) {
+	public Transactions(int transactionId, int productPurchasedId, Date transactionDate, int amount) {
 		super();
 		this.transactionId = transactionId;
 		this.productPurchasedId = productPurchasedId;
