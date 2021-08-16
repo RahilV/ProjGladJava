@@ -12,7 +12,7 @@ public interface ProductsPurchasedService {
 
 	public List<ProductsPurchased> getUserProductsPurchased(int userId);
 
-	public String buyProduct(ProductsPurchased pp);
+	public ProductsPurchased buyProduct(ProductsPurchased pp);
 
 	public ProductsPurchased getPrdById(int productsPurchasedId);
 

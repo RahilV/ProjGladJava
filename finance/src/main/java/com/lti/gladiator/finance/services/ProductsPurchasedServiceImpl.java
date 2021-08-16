@@ -37,7 +37,7 @@ public class ProductsPurchasedServiceImpl implements ProductsPurchasedService {
 
 
 	@Override
-	public String buyProduct(ProductsPurchased pp) {
+	public ProductsPurchased buyProduct(ProductsPurchased pp) {
 		return productsPurchasedDao.buyProduct(pp);
 	}
 

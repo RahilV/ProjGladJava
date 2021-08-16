@@ -66,14 +66,25 @@ public class ProductsPurchasedController {
 	@PostMapping(path = "/buyproduct")
 	public String buyProduct(@RequestBody ProductsPurchased productsPurchased) {
 		
-		ProductsPurchased pp = new ProductsPurchased();
+		// = new ProductsPurchased();
 		
-		System.out.println(productsPurchased);
- 
-		int transactionDate = productsPurchased.getTransaction().getTransactionId();
-		int amount = productsPurchased.getTransaction().getAmount(); 
+		/*pp.setEmiPeriod(productsPurchased.getEmiPeriod());
+		pp.setAmountPayed(productsPurchased.getAmountPayed());
+		pp.setAmountBillable(productsPurchased.getAmountBillable());
+		pp.setUserId(productsPurchased.getUserId());
 		
-		productsPurchasedService.buyProduct(productsPurchased);
+		Products product = productsPurchased.getProductId();
+		System.out.println(product);
+		pp.setProductId(product);*/
+		
+		ProductsPurchased pp = productsPurchasedService.buyProduct(productsPurchased);
+		
+		System.out.println(pp.getTransaction());
+		
+		Transactions t = pp.getTransaction();
+		t.setProductPurchasedId(pp.getProductPurchasedId());
+		transactioncontrol.setTransactions(t);
+		
 		return "Product Purchased Successfully";
 
 	}

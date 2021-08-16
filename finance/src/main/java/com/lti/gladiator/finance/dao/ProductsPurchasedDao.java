@@ -13,7 +13,7 @@ public interface ProductsPurchasedDao {
 
 	public ProductsPurchased getPrdById(int productsPurchasedId);
 	
-	public String buyProduct(ProductsPurchased pp);
+	public ProductsPurchased buyProduct(ProductsPurchased pp);
 	
 	
 }

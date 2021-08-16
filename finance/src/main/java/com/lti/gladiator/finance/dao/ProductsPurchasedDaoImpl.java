@@ -49,9 +49,9 @@ public class ProductsPurchasedDaoImpl implements ProductsPurchasedDao {
 	
 	@Override
 	@Transactional
-	public String buyProduct(ProductsPurchased pp){
-	     em.persist(pp);
-		 return "Buy Product";	
+	public ProductsPurchased buyProduct(ProductsPurchased pp){
+		em.persist(pp);
+		return pp;	
 	}
 
 	@Override

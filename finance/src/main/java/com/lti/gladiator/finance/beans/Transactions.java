@@ -33,6 +33,13 @@ public class Transactions{
 	@Column(name="AMOUNT")
 	private int amount;
 
+	public Transactions(int productPurchasedId, Date transactionDate, int amount) {
+		super();
+		this.productPurchasedId = productPurchasedId;
+		this.transactionDate = transactionDate;
+		this.amount = amount;
+	}
+
 	public Transactions(int transactionId, int productPurchasedId, Date transactionDate, int amount) {
 		super();
 		this.transactionId = transactionId;

@@ -30,7 +30,7 @@ public class ProductsPurchased implements Serializable{
     @Column(name="USER_ID")
 	private int userId;
 	
-	@OneToOne(cascade=CascadeType.ALL,targetEntity=Products.class)
+	@OneToOne(cascade=CascadeType.MERGE,targetEntity=Products.class)
 	@JoinColumn(name="PRODUCT_ID")
 	private Products productId;
 	

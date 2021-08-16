@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transaction;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -57,5 +58,17 @@ public class TransactionDaoImpl implements TransactionDao {
 		tq.setParameter("t_productPurchasedId", productsPurchasedId);
 		List<Transactions> TransactionList = tq.getResultList();
 		return TransactionList;
+	}
+
+	@Override
+	@Transactional
+	public Transactions setTransactions(Transactions transaction) {
+		//System.out.println("SET"+em.find(Transaction.class, transaction.getTransactionId()));
+		Transactions t = em.find(Transactions.class, transaction.getTransactionId());
+		System.out.println("\nSAVE: "+ t);
+		t.setProductPurchasedId(transaction.getProductPurchasedId());
+		/*t.setProductPurchasedId(transaction.getProductPurchasedId());*/
+		em.merge(t);
+		return t;
 	}
 }

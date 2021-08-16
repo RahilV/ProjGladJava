@@ -52,4 +52,9 @@ public class TransactionServiceImpl implements TransactionService{
 		return transactionDao.getTransactionsById(productsPurchasedId);
 	}
 
+	@Override
+	public Transactions setTransactions(Transactions transaction) {
+		return transactionDao.setTransactions(transaction);
+	}
+
 }
